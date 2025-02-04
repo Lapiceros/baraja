@@ -8,16 +8,25 @@ namespace baraja.Models
 {
     internal class Carta
     {
-        private string palo;
-        private int numero;
-
-        public string Palo {  get { return palo; } set { palo = value; } }
-        public int Numero { get { return numero; } set { numero = value; } }
-
-        public Carta(String palo, int numero) 
+        private string _palo;
+        private string _numero;
+        private int _valor;
+        private static readonly Dictionary<string, int> Valores = new Dictionary<string, int>
         {
-            this.palo = palo;
-            this.numero = numero;
+            { "2", 2 }, { "3", 3 }, { "4", 4 }, { "5", 5 }, { "6", 6 }, { "7", 7 },
+            { "8", 8 }, { "9", 9 }, { "10", 10 }, { "J", 11 }, { "Q", 12 }, { "K", 13 }, { "A", 14 }
+        };
+
+        public string Palo {  get { return _palo; } set { _palo = value; } }
+        public string Numero { get { return _numero; } set { _numero = value; } }
+        public int Valor { get { return _valor; } set { _valor = value; } }
+
+
+        public Carta(String palo, string numero) 
+        {
+            this.Palo = palo;
+            this.Numero = numero;
+            this.Valor = Valores[numero];
         }
     }
 }

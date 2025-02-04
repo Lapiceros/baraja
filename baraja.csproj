@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Models\Baraja.cs" />
     <Compile Include="Models\Carta.cs" />
+    <Compile Include="Models\Jugador.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

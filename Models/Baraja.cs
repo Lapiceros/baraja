@@ -23,12 +23,12 @@ namespace baraja.Models
 
        private void GenerarBaraja()
         {
-            string[] palos = { "oros", "copas", "espadas", "bastos" };
-            int[] valores = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            string[] palos = { "Corazones", "Diamantes", "Trebolss", "Picas" };
+            string[] valores = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
 
             foreach (string palo in palos)
             {
-                foreach (int valor in valores)
+                foreach (string valor in valores)
                 {
                     cartas.Add(new Carta(palo, valor));
                 }
@@ -77,6 +77,18 @@ namespace baraja.Models
                 cartas.Remove(cartaRobada);
 
             MostrarCarta(cartaRobada);
+        }
+        public List<List<Carta>> RepartirCartas(int numJugadores)
+        {
+            List<List<Carta>> manos = Enumerable.Range(0, numJugadores).Select( x => new List<Carta>()).ToList();
+            int index = 0;
+            while (cartas.Count >= numJugadores) 
+            {
+                manos[index % numJugadores].Add(cartas[0]);
+                cartas.RemoveAt(0);
+                index++;
+            }
+            return manos;
         }
 
         public Carta MostrarCarta(Carta carta)
