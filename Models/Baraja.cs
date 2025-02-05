@@ -8,22 +8,19 @@ namespace baraja.Models
 {
     internal class Baraja
     {
-        private string _name;
 
         private List<Carta> cartas;
 
-        public string Name { get { return _name; } set { _name = value; } }
-        public Baraja(string name)
+        public List<Carta> Cartas { get { return cartas; } }
+        public Baraja()
         {
-            this.Name = name;
             cartas = new List<Carta>();
             GenerarBaraja();
-
         }
 
        private void GenerarBaraja()
         {
-            string[] palos = { "Corazones", "Diamantes", "Trebolss", "Picas" };
+            string[] palos = { "Corazones", "Diamantes", "Treboles", "Picas" };
             string[] valores = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
 
             foreach (string palo in palos)
