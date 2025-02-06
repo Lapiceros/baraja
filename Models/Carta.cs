@@ -9,24 +9,37 @@ namespace baraja.Models
     internal class Carta
     {
         private string _palo;
-        private string _numero;
-        private int _valor;
-        private static readonly Dictionary<string, int> Valores = new Dictionary<string, int>
+        private int _numero;
+        public enum ValorCarta
         {
-            { "2", 2 }, { "3", 3 }, { "4", 4 }, { "5", 5 }, { "6", 6 }, { "7", 7 },
-            { "8", 8 }, { "9", 9 }, { "10", 10 }, { "J", 11 }, { "Q", 12 }, { "K", 13 }, { "A", 14 }
-        };
+            Dos = 2,
+            Tres = 3,
+            Cuatro = 4,
+            Cinco = 5,
+            Seis = 6,
+            Siete = 7,
+            Ocho = 8,
+            Nueve = 9,
+            Diez = 10,
+            J = 11,
+            Q = 12,
+            K = 13,
+            A = 14
+        }
 
         public string Palo {  get { return _palo; } set { _palo = value; } }
-        public string Numero { get { return _numero; } set { _numero = value; } }
-        public int Valor { get { return _valor; } set { _valor = value; } }
+        public int Numero { get { return _numero; } set { _numero = value; } }
 
 
-        public Carta(String palo, string numero) 
+        public Carta(String palo, int numero) 
         {
             this.Palo = palo;
             this.Numero = numero;
-            this.Valor = Valores[numero];
+        }
+
+        public ValorCarta ObtenerValor()
+        {
+            return (ValorCarta)this.Numero;
         }
     }
 }

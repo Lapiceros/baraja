@@ -29,13 +29,18 @@ namespace baraja.Models
                 {
                     var carta = jugador.RobarCarta();
                     Thread.Sleep(500);
-                    Console.WriteLine($"{jugador.Name} juega {carta.Numero} de {carta.Palo}");
+
+                    if (carta.Numero > 10)
+                        Console.WriteLine($"{jugador.Name} juega {carta.ObtenerValor()} de {carta.Palo}");
+                    else
+                        Console.WriteLine($"{jugador.Name} juega {carta.Numero} de {carta.Palo}");
+
                     mesa.Add((jugador, carta));
                 }
             }
 
-            int maxValor = mesa.Max(carta => carta.Item2.Valor);
-            var ganador = mesa.Where(carta => carta.Item2.Valor == maxValor).Select(carta => carta.Item1 ).ToList();
+            int maxValor = mesa.Max(carta => carta.Item2.Numero);
+            var ganador = mesa.Where(carta => carta.Item2.Numero == maxValor).Select(carta => carta.Item1 ).ToList();
 
             if (ganador.Count == 1)
             {
@@ -63,12 +68,12 @@ namespace baraja.Models
                 {
                     var carta = jugador.RobarCarta();
                     Thread.Sleep(500);
-                    Console.WriteLine($"{jugador.Name} juega {carta.Numero} de {carta.Palo}");
+                    Console.WriteLine($"{jugador.Name} juega {carta.ObtenerValor()} de {carta.Palo}");
                     desempate.Add((jugador, carta));
                 }
             }
-            int maxValor = desempate.Max(carta => carta.Item2.Valor);
-            var jugadores = desempate.Where(carta => carta.Item2.Valor == maxValor).Select(carta => carta.Item1).ToList();
+            int maxValor = desempate.Max(carta => carta.Item2.Numero);
+            var jugadores = desempate.Where(carta => carta.Item2.Numero == maxValor).Select(carta => carta.Item1).ToList();
 
             if (jugadores.Count ==1)
             {
