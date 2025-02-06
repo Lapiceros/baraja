@@ -45,35 +45,29 @@ namespace baraja.Models
             cartas = cartas.OrderBy(x => rnd.Next()).ToList();
         }
 
-        public void RobarCarta()
+        public Carta RobarCarta()
         {
-            Carta cartaRobada = cartas[0];
-            cartas.Remove(cartaRobada);
-            MostrarCarta(cartaRobada);
+            return RobarPosN(0);
         }
 
-        public void RobarCartaAzar()
+        public Carta RobarCartaAzar()
         {
             Random rand = new Random();
             int pos = rand.Next(cartas.Count);
-            Console.WriteLine(pos);
-            Carta cartaRobada = cartas[pos];
-            cartas.Remove(cartaRobada );
-            MostrarCarta(cartaRobada);
+            return RobarPosN(pos);
 
         }
-        public void RobarPosN()
+        public Carta RobarPosN(int posicion)
         {
-            Console.WriteLine("Ingresa una posicion para robar carta");
-            int pos = int.Parse( Console.ReadLine() );
-            Carta cartaRobada = cartas[pos];
+            Carta cartaRobada = cartas[posicion];
 
-            if (pos > cartas.Count)
+            if (posicion > cartas.Count)
                 Console.WriteLine("error");
             else
                 cartas.Remove(cartaRobada);
 
             MostrarCarta(cartaRobada);
+            return cartaRobada;
         }
         public List<List<Carta>> RepartirCartas(int numJugadores)
         {
